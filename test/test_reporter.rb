@@ -217,7 +217,7 @@ class TestReporter < Minitest::Test
   end
 
   def test_symbols_report
-    skip if RUBY_VERSION < "2.2.0"
+    skip if RUBY_VERSION < "2.3.0"
 
     string = "this is a string"
     results = create_report do
