@@ -39,7 +39,10 @@ module MemoryProfiler
     end
 
     def self.full_gc
-      GC.start while new_count = decreased_count(new_count)
+      while new_count = decreased_count(new_count)
+        p :GC
+        GC.start
+      end
     end
 
     def self.decreased_count(old)
