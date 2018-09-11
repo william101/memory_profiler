@@ -37,5 +37,25 @@ module MemoryProfiler
       #   separately because the object_id of the shortened string will be different
       @string_cache[obj] ||= obj[0,200]
     end
+
+    def self.full_gc
+      GC.start while new_count = decreased_count(new_count)
+    end
+
+    def self.decreased_count(old)
+      count = count_objects
+      if !old || count < old
+        count
+      else
+        nil
+      end
+    end
+
+    def self.count_objects
+      i = 0
+      ObjectSpace.each_object do |obj|
+        i += 1
+      end
+    end
   end
 end

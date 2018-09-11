@@ -45,8 +45,7 @@ module MemoryProfiler
       retained = StatHash.new.compare_by_identity
 
       GC.enable
-      GC.start
-      GC.start
+      Helpers.full_gc
 
       # Caution: Do not allocate any new Objects between the call to GC.start and the completion of the retained
       #          lookups. It is likely that a new Object would reuse an object_id from a GC'd object.
@@ -85,7 +84,6 @@ module MemoryProfiler
       rvalue_size = GC::INTERNAL_CONSTANTS[:RVALUE_SIZE]
       rvalue_size_adjustment = RUBY_VERSION < '2.2' ? rvalue_size : 0
       helper = Helpers.new
-
       result = StatHash.new.compare_by_identity
 
       ObjectSpace.each_object do |obj|
