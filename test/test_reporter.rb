@@ -217,12 +217,12 @@ class TestReporter < Minitest::Test
   end
 
   def test_symbols_report
-    string = "this is a string"
+    skip if RUBY_VERSION < "2.2.0"
 
+    string = "this is a string"
     results = create_report do
       string.to_sym
     end
-
     assert_equal(3, results.total_allocated)
     assert_equal(0, results.total_retained)
     assert_equal(1, results.strings_allocated.size)
