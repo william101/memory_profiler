@@ -26,6 +26,6 @@ class TestReporterPrivateStartStop < TestReporter
   end
 
   def test_symbols_report
-    skip
+    # skip test
   end
 end
