@@ -41,4 +41,8 @@ class TestReporterPublicStartStop < TestReporter
   def test_exception_handling
     # This overrides and skips exception handling from the base TestReporter
   end
+
+  def test_symbols_report
+    skip
+  end
 end
